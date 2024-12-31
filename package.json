@@ -30,7 +30,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "build": "ray build",
+    "build": "deno -A ./src/gen-cmd-files.ts && ray build",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",

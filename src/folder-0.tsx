@@ -3,6 +3,6 @@ import { closeMainWindow } from "@raycast/api";
 import openFinder from "./open-finder"
 
 export default function Command() {
-    openFinder("~/Documents");
+    openFinder("~/Downloads");
     closeMainWindow();
 }
