@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "node:fs";
-import getFavFolderPaths from "./get-favorite-folders.ts";
+import getFavFolderPaths from "./get-favorite-folders";
 
 interface PackageCmd {
   name: string;
@@ -14,9 +14,16 @@ function genCmdFiles() {
   for (let i = 0; i < favFolderPaths.length; i++) {
     const folderPath = favFolderPaths[i];
     writeFileSync(`./src/folder-${i}.tsx`, genCmdFileContent(folderPath));
+  }
 
-    const packageJSON = JSON.parse(readFileSync("./package.json", "utf8"));
-    const commandsList = packageJSON["commands"] as PackageCmd[];
+  genPackageJsonCommands(favFolderPaths);
+}
+
+function genPackageJsonCommands(favFolders: string[]) {
+  const packageJSON = JSON.parse(readFileSync("./package.json", "utf8"));
+  const commandsList: PackageCmd[] = [];
+  for (let i = 0; i < favFolders.length; i++) {
+    const folderPath = favFolders[i];
 
     const pathSplit = folderPath.split("/");
     const commandName = pathSplit[pathSplit.length - 1];
@@ -29,10 +36,10 @@ function genCmdFiles() {
     };
 
     commandsList.push(newCommand);
-    packageJSON["commands"] = commandsList;
-
-    writeFileSync("./package.json", JSON.stringify(packageJSON, null, 2));
   }
+  packageJSON["commands"] = commandsList;
+
+  writeFileSync("./package.json", JSON.stringify(packageJSON, null, 2));
 }
 
 function genCmdFileContent(path: string): string {

@@ -39,10 +39,11 @@
     "@types/react": "18.3.3",
     "eslint": "^8.57.0",
     "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "build": "deno -A ./src/gen-cmd-files.ts && ray build",
+    "build": "npx ts-node ./src/gen-cmd-files.ts && ray build",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
