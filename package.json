@@ -10,8 +10,20 @@
   ],
   "commands": [
     {
-      "name": "folder-1",
+      "name": "folder-0",
       "title": "Downloads",
+      "description": "See your favorite folders from finder",
+      "mode": "no-view"
+    },
+    {
+      "name": "folder-1",
+      "title": "Documents",
+      "description": "See your favorite folders from finder",
+      "mode": "no-view"
+    },
+    {
+      "name": "folder-2",
+      "title": "Developer",
       "description": "See your favorite folders from finder",
       "mode": "no-view"
     }

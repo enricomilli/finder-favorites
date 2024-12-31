@@ -1,4 +1,12 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import getFavFolderPaths from "./get-favorite-folders.ts";
+
+interface PackageCmd {
+  name: string;
+  title: string;
+  description: "See your favorite folders from finder";
+  mode: "no-view";
+}
 
 function genCmdFiles() {
   const favFolderPaths = getFavFolderPaths();
@@ -6,6 +14,24 @@ function genCmdFiles() {
   for (let i = 0; i < favFolderPaths.length; i++) {
     const folderPath = favFolderPaths[i];
     writeFileSync(`./src/folder-${i}.tsx`, genCmdFileContent(folderPath));
+
+    const packageJSON = JSON.parse(readFileSync("./package.json", "utf8"));
+    const commandsList = packageJSON["commands"] as PackageCmd[];
+
+    const pathSplit = folderPath.split("/");
+    const commandName = pathSplit[pathSplit.length - 1];
+
+    const newCommand: PackageCmd = {
+      name: `folder-${i}`,
+      title: commandName,
+      description: "See your favorite folders from finder",
+      mode: "no-view",
+    };
+
+    commandsList.push(newCommand);
+    packageJSON["commands"] = commandsList;
+
+    writeFileSync("./package.json", JSON.stringify(packageJSON, null, 2));
   }
 }
 
@@ -19,12 +45,6 @@ export default function Command() {
     closeMainWindow();
 }`;
   return fileContent;
-}
-
-function getFavFolderPaths(): string[] {
-  const favFolders = ["~/Downloads", "~/Documents", "~/Developer"];
-
-  return favFolders;
 }
 
 genCmdFiles();
