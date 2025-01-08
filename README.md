@@ -6,10 +6,14 @@ The build step allows for the extension to generate commands so that each folder
 # Installation
 
 ### Step 1 - Clone the repository
-```git clone https://github.com/enricomilli/finder-favorites.git```
+```
+git clone https://github.com/enricomilli/finder-favorites.git
+```
 
 ### Step 2 - Build the extension
-```npm run build```
+```
+npm run build
+```
 
 ### Step 3 - Add the extension to Raycast
 - Open Raycast and search for import extension
