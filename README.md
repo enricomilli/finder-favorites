@@ -21,8 +21,8 @@ The build step allows for the extension to generate commands so that each folder
 ![Screenshot of Finder Favorites Search 1](/assets/search-sc-1.jpg?raw=true "")
 - This extensions allows for searching of finder folders in Raycast without having to click into a finder search extension.
 
-![Screenshot of Finder Favorites](/assets/finder-sc.jpg?raw=true "")
+![Screenshot of Finder Favorites](/assets/finder-sc.png?raw=true "")
 - In the build step it will generate commands for all the folders in the favorites sidebar
 
 ### Congrats you now have easy access to your folders 
-![Screenshot of Finder Favorites Search 2](/assets/search-sc-2?raw=true "")
+![Screenshot of Finder Favorites Search 2](/assets/search-sc-2.jpg?raw=true "")
